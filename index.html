@@ -15,7 +15,7 @@
 	<script src="fullscreen.js"></script> <!-- https://github.com/sindresorhus/screenfull.js*/ -->
 	<link rel="stylesheet"
 	href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css"> <!-- https://github.com/daneden/animate.css -->
-	 
+	<link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
 <style>
 html {
 	overflow: hidden;
@@ -34,7 +34,7 @@ body {
 	background: #EFA48B;
 	height: 100vh;
 	width: width;
-	padding: 5vw;
+	padding: 10vw;
 }
 
 .text {
@@ -45,11 +45,26 @@ body {
 	transform: translate(-50%, -50%);
 	color: #6F6866;
 	text-align: left;
-	font-family: Arial, Helvetica, sans-serif;
+	font-family: 'Montserrat', sans-serif;
 	font-size: 8vw;
 	word-wrap: break-word;
 }
+.number {
+	position: absolute;
+	float: left;
+	margin-left: auto;
+	margin-right: auto;
+	margin-top: 3vw;
+	bottom: 0;
+	right: 0;
+	left: 0;
+	color: #ffffff;
+	text-align: center;
+	font-family: 'Montserrat', sans-serif;
+	font-size: 40vw;
+    opacity: 0.25;
 
+}
 .reset {
 	border-style: solid;
     border-width: 3px;
@@ -68,7 +83,7 @@ body {
 	line-height: 10vw;
 	color: #E3F09B;
 	text-align: center;
-	font-family: Arial, Helvetica, sans-serif;
+	font-family: 'Montserrat', sans-serif;
 	font-size: 5vw;
 }
 
@@ -76,6 +91,7 @@ body {
 </head>
 <body>
 <div id="questionCard" class="card" onmouseup="changeText()">
+	<div id="questionNum" class="number"></div>
 	<div id="questionText" class="text">
 	<b><center>Quick Instructions</center></b><br> Read one question aloud to your partner, then both of you answer. Swap roles for the next question. Answering all 36 questions should take around one hour, but time isn't important…
 	</div>
@@ -84,46 +100,53 @@ body {
 <script>
 var rand = 0;
 function changeText() {
+	if(rand >= 35){
+		$("#questionNum").html("36");
+	} else {
+		$("#questionNum").html(rand + 1);
+	}
+		
 	var randomQ = [
-	"1. Given the choice of anyone in the world, whom would you want as a dinner guest?", 
-	"2. Would you like to be famous? In what way?", 
-	"3. Before making a telephone call, do you ever rehearse what you are going to say? Why?",
-	"4. What would constitute a “perfect” day for you?",
-	"5. When did you last sing to yourself? To someone else?",
-	"6. If you were able to live to the age of 90 and retain either the mind or body of a 30-year-old for the last 60 years of your life, which would you want?",
-	"7. Do you have a secret hunch about how you will die?",
-	"8. Name three things you and your partner appear to have in common.",
-	"9. For what in your life do you feel most grateful?",
-	"10. If you could change anything about the way you were raised, what would it be?",
-	"11. Take four minutes and tell your partner your life story in as much detail as possible.",
-	"12. If you could wake up tomorrow having gained any one quality or ability, what would it be?",
-	"13. If a crystal ball could tell you the truth about yourself, your life, the future or anything else, what would you want to know?",
-	"14. Is there something that you’ve dreamed of doing for a long time? Why haven’t you done it?",
-	"15. What is the greatest accomplishment of your life?",
-	"16. What do you value most in a friendship?",
-	"17. What is your most treasured memory?",
-	"18. What is your most terrible memory?",
-	"19. If you knew that in one year you would die suddenly, would you change anything about the way you are now living? Why?",
-	"20. What does friendship mean to you?",
-	"21. What roles do love and affection play in your life?",
-	"22. Alternate sharing something you consider a positive characteristic of your partner. Share a total of five items.",
-	"23. How close and warm is your family? Do you feel your childhood was happier than most other people’s?",
-	"25. Make three true “we” statements each. For instance, “We are both in this room feeling ... ”",
-	"26. Complete this sentence: “I wish I had someone with whom I could share ... ”",
-	"27. If you were going to become a close friend with your partner, please share what would be important for him or her to know.",
-	"28. Tell your partner what you like about them; be very honest this time, saying things that you might not say to someone you’ve just met.",
-	"29. Share with your partner an embarrassing moment in your life.",
-	"30. When did you last cry in front of another person? By yourself?",
-	"31. Tell your partner something that you like about them already.",
-	"32. What, if anything, is too serious to be joked about?",
-	"33. If you were to die this evening with no opportunity to communicate with anyone, what would you most regret not having told someone? Why haven’t you told them yet?",
-	"34. Your house, containing everything you own, catches fire. After saving your loved ones and pets, you have time to safely make a final dash to save any one item. What would it be? Why?",
-	"35. Of all the people in your family, whose death would you find most disturbing? Why?",
-	"36. Share a personal problem and ask your partner’s advice on how he or she might handle it. Also, ask your partner to reflect back to you how you seem to be feeling about the problem you have chosen."];
+	"Given the choice of anyone in the world, whom would you want as a dinner guest?", 
+	"Would you like to be famous? In what way?", 
+	"Before making a telephone call, do you ever rehearse what you are going to say? Why?",
+	"What would constitute a “perfect” day for you?",
+	"When did you last sing to yourself? To someone else?",
+	"If you were able to live to the age of 90 and retain either the mind or body of a 30-year-old for the last 60 years of your life, which would you want?",
+	"Do you have a secret hunch about how you will die?",
+	"Name three things you and your partner appear to have in common.",
+	"For what in your life do you feel most grateful?",
+	"If you could change anything about the way you were raised, what would it be?",
+	"Take four minutes and tell your partner your life story in as much detail as possible.",
+	"If you could wake up tomorrow having gained any one quality or ability, what would it be?",
+	"If a crystal ball could tell you the truth about yourself, your life, the future or anything else, what would you want to know?",
+	"Is there something that you’ve dreamed of doing for a long time? Why haven’t you done it?",
+	"What is the greatest accomplishment of your life?",
+	"What do you value most in a friendship?",
+	"What is your most treasured memory?",
+	"What is your most terrible memory?",
+	"If you knew that in one year you would die suddenly, would you change anything about the way you are now living? Why?",
+	"What does friendship mean to you?",
+	"What roles do love and affection play in your life?",
+	"Alternate sharing something you consider a positive characteristic of your partner. Share a total of five items.",
+	"How close and warm is your family? Do you feel your childhood was happier than most other people’s?",
+	"How do you feel about your relationship with your mother?",
+	"Make three true “we” statements each. For instance, “We are both in this room feeling ... ”",
+	"Complete this sentence: “I wish I had someone with whom I could share ... ”",
+	"If you were going to become a close friend with your partner, please share what would be important for him or her to know.",
+	"Tell your partner what you like about them; be very honest this time, saying things that you might not say to someone you’ve just met.",
+	"Share with your partner an embarrassing moment in your life.",
+	"When did you last cry in front of another person? By yourself?",
+	"Tell your partner something that you like about them already.",
+	"What, if anything, is too serious to be joked about?",
+	"If you were to die this evening with no opportunity to communicate with anyone, what would you most regret not having told someone? Why haven’t you told them yet?",
+	"Your house, containing everything you own, catches fire. After saving your loved ones and pets, you have time to safely make a final dash to save any one item. What would it be? Why?",
+	"Of all the people in your family, whose death would you find most disturbing? Why?",
+	"Share a personal problem and ask your partner’s advice on how he or she might handle it. Also, ask your partner to reflect back to you how you seem to be feeling about the problem you have chosen."];
 	//var rand = Math.floor(Math.random() * randomQ.length);
 	$("#questionText").html(randomQ[rand]);
 	rand++;
 }
-	</script>
+</script>
 </body>
 </html>
