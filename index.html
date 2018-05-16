@@ -42,13 +42,14 @@ body {
 	float: left;
 	top: 50%;
 	left: 50%;
-	transform: translate(-50%, -50%);
+	transform: translate(-50%, -70%);
 	color: #6F6866;
 	text-align: left;
 	font-family: 'Montserrat', sans-serif;
 	font-size: 8vw;
 	word-wrap: break-word;
 }
+
 .number {
 	position: absolute;
 	float: left;
@@ -63,8 +64,8 @@ body {
 	font-family: 'Montserrat', sans-serif;
 	font-size: 40vw;
     opacity: 0.25;
-
 }
+
 .reset {
 	border-style: solid;
     border-width: 3px;
@@ -87,21 +88,53 @@ body {
 	font-size: 5vw;
 }
 
+.blankLeft {
+	position: absolute;
+	top: 0;
+	left: 0;
+	height: 100%;
+	width: 50%;
+	background-color: transparent;
+}
+
+.blankRight {
+	position: absolute;
+	top: 0;
+	right: 0;
+	height: 100%;
+	width: 50%;
+	background-color: transparent;
+}
+
 </style>
 </head>
 <body>
 <div id="questionCard" class="card" onmouseup="changeText()">
 	<div id="questionNum" class="number"></div>
 	<div id="questionText" class="text">
-	<b><center>Quick Instructions</center></b><br> Read one question aloud to your partner, then both of you answer. Swap roles for the next question. Answering all 36 questions should take around one hour, but time isn't important…
+	<b><center>Quick Instructions</center></b><br> Read one question aloud, then both of you answer. Swap roles for the next question.
 	</div>
+	<div id="left" class="blankLeft" onmouseup="decrease()"></div>
+	<div id="right" class="blankRight" onmouseup="increase()"></div>
 </div>
 <div id="resetAll" class="reset" onmouseup="location.reload()">Start Over</div>
 <script>
-var rand = 0;
+var rand = -1;
+function increase() {
+	rand++;
+}
+
+function decrease() {
+	rand--;
+}
+
 function changeText() {
 	if(rand >= 35){
 		$("#questionNum").html("36");
+		rand = 35;
+	} else if(rand <=0) {
+		$("#questionNum").html("1");
+		rand = 0;
 	} else {
 		$("#questionNum").html(rand + 1);
 	}
@@ -145,7 +178,6 @@ function changeText() {
 	"Share a personal problem and ask your partner’s advice on how he or she might handle it. Also, ask your partner to reflect back to you how you seem to be feeling about the problem you have chosen."];
 	//var rand = Math.floor(Math.random() * randomQ.length);
 	$("#questionText").html(randomQ[rand]);
-	rand++;
 }
 </script>
 </body>
